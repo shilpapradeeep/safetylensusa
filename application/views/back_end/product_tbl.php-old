@@ -1,0 +1,56 @@
+<div class="row">
+ <?php if(!empty($pro_list))
+ { ?>
+   <div class="col-md-12 col-lg-12">
+
+
+
+    <div class="table-responsive">
+     <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+      <div class="row">
+       <div class="col-sm-12">
+        <table id="example" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+         <thead>
+          <tr role="row">
+           <th>#</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>MRP</th>
+            <th>Selling Price</th>
+            <th>Action</th>
+         </tr>
+       </thead>
+       <tbody>
+         <?php foreach ($pro_list as $skey => $val) { ?>
+          <tr>
+            <td><?=$skey+1?></td>
+            <td><?=not($val->pr_title,'-')?></td>
+            <td><?=not($val->pr_category,'-')?></td>
+            <td><?=not($val->pr_mrp,'-')?></td>
+            <td><?=not($val->pr_selling_price,'-')?></td>
+            <td>
+                <!--<a class="btn btn-success text-white" title="View" href="<?=b().'view-product/'.slugAdmin($val->pr_id,$val->pr_title)?>"><i class="fa fa-eye"></i></a>-->
+                <a class="btn btn-primary text-white" title="Edit" href="<?=b().'edit-product/'.slugAdmin($val->pr_id,$val->pr_title)?>"><i class="fa fa-edit"></i></a>
+                <a class="btn btn-secondary text-white" title="Delete" onclick="delete_product('<?=sec($val->pr_id)?>')"><i class="fa fa-trash"></i></a>
+            </td>
+        </tr>
+      <?php  } ?>
+    </tbody>
+  </table>
+</div>
+</div>
+
+</div>
+</div>
+
+
+</div>
+<?php } else
+{
+
+  echo "No data";
+
+
+} ?>
+</div>

@@ -1,0 +1,34 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+function mail_send($msg,$data)
+{
+	$CI = get_instance();
+	$CI->load->library('email');
+	$config['protocol'] = "smtp";
+	$config['smtp_host'] = 'ssl://a4aim.com';
+	$config['smtp_port'] = '465';
+	$config['smtp_user'] = 'test@a4aim.com';
+	$config['smtp_user_name'] = 'E-Commerce';
+	$config['smtp_pass'] = 'ti#sNcw9Gg^P';
+	$config['mailtype'] = 'html';
+	$config['charset'] = 'utf-8';
+	$config['newline'] = "\r\n";
+	$config['wordwrap'] = TRUE;
+	$from='test@a4aim.com';
+	$CI->email->from($from, 'E-Commerce');
+	$CI->email->to($data['mailData']['email'],$data['mailData']['uname']);
+	$CI->email->subject($data['mailData']['subject']);
+	$CI->email->message($msg); 
+	// if(!empty($data['pdf_path']))
+	// 	 $CI->email->attach($data['pdf_path']);
+	if($CI->email->send())
+	{
+		return true;
+	}
+	else
+	{
+		$val_error= $CI->email->print_debugger();
+		$err_arr=array('from_email'=>$from,'error'=>$val_error);
+		tsi($err_arr);
+	}
+}
