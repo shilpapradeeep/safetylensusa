@@ -7,5 +7,6 @@ The project involved creating a platform with a wide range of frames and prescri
 
 1.Create a new database and update the file database.php with the new database information.<br>
 2.Update the DATABASE CONSTANTS with the database info you created.<br>
-3.Update the base URL in config.php
-3.Run the application
+3.Import the db from db folder to the database you created<br>
+4.Update the base URL in config.php<br>
+5.Run the application
